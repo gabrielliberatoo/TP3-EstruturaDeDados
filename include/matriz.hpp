@@ -14,10 +14,9 @@ public:
     //Método para multiplicar duas Matrizes
     Matriz MultiplicaMatriz(Matriz A);
 
-    //Método para multiplicar a matriz pela cordenada
-    void GeraCordenada(int cord[2]);
-
-private:
+    //Método para calcular as cordenadas do ponto final
+    int* GeraCordenada(int x, int y);
+    
     //Matriz 2x2
     int dados[2][2];
 
