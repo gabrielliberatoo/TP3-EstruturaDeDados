@@ -1,7 +1,7 @@
 #ifndef SEGTREE_HPP
 #define SEGTREE_HPP 
 
-#include "matriz.hpp"
+#include "Matriz.hpp"
 
 
 class SegTree{

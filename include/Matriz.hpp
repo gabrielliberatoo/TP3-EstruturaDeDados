@@ -18,7 +18,7 @@ public:
     int* GeraCordenada(int x, int y);
     
     //Matriz 2x2
-    int dados[2][2];
+    long long dados[2][2];
 
 };
 

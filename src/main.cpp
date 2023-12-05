@@ -1,13 +1,19 @@
 #include <iostream>
-#include "segtree.hpp"
+#include "Matriz.hpp"
+#include "Segtree.hpp"
 
 int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SegTree segTree(n);
+    Matriz* transformacoes = new Matriz[n];
+    for (int i = 0; i < n; ++i) {
+        transformacoes[i] = Matriz();
+    }
 
-    for (int i = 0; i < q; i++) {
+    SegTree arvore(n);
+
+    for (int i = 0; i < q; ++i) {
         char operacao;
         std::cin >> operacao;
 
@@ -20,16 +26,23 @@ int main() {
             }
             Matriz novaMatriz;
             novaMatriz.Insere(valores);
-            segTree.Atualiza(1, instante, novaMatriz, 0, n - 1);
-        } else if (operacao == 'q') {
-            int t0, td, x, y;
-            std::cin >> t0 >> td >> x >> y;
-            Matriz resultado = segTree.Consulta(t0, td, 1, 0, n - 1);
-            int* coordenadas = resultado.GeraCordenada(x, y);
-            std::cout << coordenadas[0]  << " " << coordenadas[1]  << std::endl;
-            delete[] coordenadas;
-        }
+            arvore.Atualiza(1, instante, novaMatriz, 0, n - 1);
+        }else if (operacao == 'q') {
+    int t0, td, x, y;
+    std::cin >> t0 >> td >> x >> y;
+
+    Matriz resultado = arvore.Consulta(t0, td, 1, 0, n - 1);
+
+    long long final_x = (resultado.dados[0][0] * x + resultado.dados[0][1] * y) % 100000000;
+    long long final_y = (resultado.dados[1][0] * x + resultado.dados[1][1] * y) % 100000000;
+
+    std::cout << final_x << " " << final_y << std::endl;
+}
+
+
     }
+
+    delete[] transformacoes;
 
     return 0;
 }
